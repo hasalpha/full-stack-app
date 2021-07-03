@@ -18,7 +18,8 @@ const passport = require('passport');
 const localStrategy = require('passport-local');
 const User = require('./models/user');
 const Product = require('./models/product');
-const prodUrl = `mongodb://localhost:27017/userDB`;
+// 'mongodb://localhost:27017/userDB'
+const prodUrl = process.env.DB_URL;
 const secret = process.env.SECRET || crypto.randomBytes(20).toString("hex");
 const store = new mongoDBStore({
     secret,
