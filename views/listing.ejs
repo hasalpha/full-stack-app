@@ -1,0 +1,12 @@
+<%- include('partials/header.ejs') %>
+<% if(products.length !== 0){%>
+<ol style="display: flex;flex-direction:column;align-items:center;justify-content:center;text-transform:uppercase;">
+    <% for(product of products){ %>
+        <li style="width:300px"><a href="/product/listing/<%= product._id%>"><%= product.name%></a></li>
+        <% } %>
+</ol>
+<% }else{ %>
+    <h1>No products available!</h1>
+<%}%>
+
+<%- include('partials/footer.ejs') %>

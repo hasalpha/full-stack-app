@@ -1,0 +1,14 @@
+<%- include('partials/header.ejs')%>
+<div class="cluster-map" id="map"></div>
+<div id="menu">
+    <a class="text-decoration-none fs-1 contrasty-white" href="/product">List your product</a>
+    <a class="text-decoration-none fs-1 contrasty-white" href="/product/listing">All product listing</a>
+</div>
+<script src='https://api.mapbox.com/mapbox-gl-js/v2.3.1/mapbox-gl.js'></script>
+<link href='https://api.mapbox.com/mapbox-gl-js/v2.3.1/mapbox-gl.css' rel='stylesheet' />
+<script type="text/javascript">
+    const myToken = '<%- process.env.MAPBOX_TOKEN %>';
+    const allProducts = {'features': <%- JSON.stringify(products)%>};
+  </script>
+<script src="/js/displayClusterMap.js"></script>
+<%- include('partials/footer.ejs')%>

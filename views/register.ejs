@@ -1,0 +1,46 @@
+<%- include('partials/header.ejs') %>
+<div style="" class="d-flex justify-content-center align-items-center container mb-3 text-dark">
+    <div class="card shadow mt-5 border-0" style="width: 23rem;">
+        <div class="card-body">
+          <h5 class="card-title text-center">Registration</h5>
+          <form class="needs-validation" action="/register" method="post" novalidate>
+                <div class="form-group mb-3">
+                    <label class="text-black-50" for="email">Email</label>
+                    <input type="email" class="form-control" name="email" id="email" aria-describedby="help" placeholder="Enter email" autofocus required>
+                    <div class="valid-feedback">
+                      Looks good!
+                    </div>
+                </div>
+              <div class="form-group mb-3">
+                  <label class="text-black-50" for="username">Username</label>
+                  <input type="text" class="form-control" name="username" id="username" aria-describedby="help" placeholder="Enter username" required>
+                  <div class="valid-feedback">
+                    Looks good!
+                  </div>
+                </div>
+                <div class="form-group mb-3">
+                  <label class="text-black-50" for="password">Password</label>
+                  <input type="password" class="form-control" name="password" id="password" placeholder="********" required>
+                  <div class="valid-feedback">
+                    Looks good!
+                  </div>
+                </div>
+                <div class="error">
+                    Passwords do not match!
+                </div>
+                <div class="form-group mb-3">
+                    <label class="text-black-50" for="rpassword">Reenter Password</label>
+                    <input type="password" class="form-control" name="rpassword" id="rpassword" placeholder="********" required>
+                    <div class="valid-feedback">
+                      Looks good!
+                    </div>
+                </div>
+                <button  style="width:100%;" type="submit" class="btn btn-outline-info">Register</button>
+          </form>
+        </div>
+    </div>
+  </div>
+    <script type="text/javascript" src="/js/validation.js"></script>
+    <script src="/js/formValidation.js"></script>
+</div>
+<%- include('partials/footer.ejs')%>

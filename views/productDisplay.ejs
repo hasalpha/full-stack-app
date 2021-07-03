@@ -1,0 +1,99 @@
+<%- include('partials/header.ejs') %>
+<div class="d-inline-flex flex-end justify-content-end px-2"><a href="/product/listing" class="link-info">Back</a></div>
+
+<div class="d-flex justify-content-evenly align-items-center container-fluid" style="height:80vh;">
+  <div class="card text-dark border-0 w-25 shadow">
+    <div id="carouselExampleIndicators" class="carousel slide" data-bs-ride="carousel">
+      <div class="carousel-inner">
+      <% for(let i=0;i<product.images.length;i++){%>
+        <div class="carousel-item <%=i===0?'active':''%>">
+          <img class="card-img-top" src="<%= product.images[i].url %>" alt="Card image cap">
+          <!-- <img src="" class="d-block mx-auto rounded" alt="..."> -->
+        </div>
+      <% } %>               
+      </div>
+      <%  if(product.images.length > 1){%> 
+      <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide="prev">
+        <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+        <span class="visually-hidden">Previous</span>
+      </button>
+      <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide="next">
+        <span class="carousel-control-next-icon" aria-hidden="true"></span>
+        <span class="visually-hidden">Next</span>
+      </button>
+      <% } %> 
+    </div>
+    <div class="card-body text-center">
+      <h5 class="card-title"><%= product.name %></h5>
+      <p class="card-text"><%= product.productDescription%></p>
+    </div>
+    <div class="card-footer text-muted text-center">
+      Posted by: <%= product.author.username%>
+      <%if(user && (user.email == product.author.email)){%> 
+        <div class="d-grid gap-2">
+          <button class="btn btn-block btn-warning" style="min-width:55px;"type="button" onclick="location.href='/product<%=url%>/edit'">Edit</button>
+          <form action="/product<%=url%>?_method=DELETE" method="POST">
+              <button class="btn btn-block btn-danger w-100" type="submit" value="Delete">Delete</button>
+          </form>
+        </div>
+        <%}%>
+    </div>
+  </div>
+    <div id='map' style='width: 300px; height: 300px;'></div>
+</div>
+
+<div class="d-flex mt-4 align-items-center justify-content-evenly bg-white text-dark min-vh-100">
+  <% if(user){%>
+  
+  <form action="/comment/<%=product._id%>" method="POST">
+    <h4>Leave a comment</h4>
+      <fieldset class="starability-basic">
+          <legend>Rating:</legend>
+          <input type="radio" id="no-rate" class="input-no-rate" name="rating" value="1" checked aria-label="No rating." />
+          <input type="radio" id="first-rate1" name="rating" value="1" />
+          <label for="first-rate1" title="Terrible">1 star</label>
+          <input type="radio" id="first-rate2" name="rating" value="2" />
+          <label for="first-rate2" title="Not good">2 stars</label>
+          <input type="radio" id="first-rate3" name="rating" value="3" checked/>
+          <label for="first-rate3" title="Average">3 stars</label>
+          <input type="radio" id="first-rate4" name="rating" value="4" />
+          <label for="first-rate4" title="Very good">4 stars</label>
+          <input type="radio" id="first-rate5" name="rating" value="5" />
+          <label for="first-rate5" title="Amazing">5 stars</label>
+        </fieldset>
+      <div>
+          <textarea name="comment" id="comment" cols="20" rows="5" placeholder="Trusted seller" required></textarea>
+      </div>
+      <br>
+      <input type="submit" value="Add comment">
+  </form>
+  <%}%>
+  <div>
+      <%for(comment of product.comments){%>
+        <span class="starability-result" data-rating="<%= comment.rating%>"><%= comment.rating%></span>
+          <p class="mt-2">By <%= comment.author.username[0].toUpperCase() + comment.author.username.slice(1)%></p>
+          <p class=""><%= comment.content%></p>
+          <%if(user && user._id.equals(comment.author._id)){%>
+              <form action="/comment/<%=product._id%>/<%=comment._id%>?_method=DELETE" method="post">
+              <input type="submit" value="Delete">
+          </form>
+          <% } %>
+          <br>
+      <%}%>
+  </div>
+  <% if(product.comments.length == 0 && !user){%>
+    <p><a href="/login" class="link-primary">Login</a> to comment</p>
+<%}%>
+  </div>
+
+
+<link rel="stylesheet" href="/css/stars.css">
+<script src='https://api.mapbox.com/mapbox-gl-js/v2.3.1/mapbox-gl.js'></script>
+<link href='https://api.mapbox.com/mapbox-gl-js/v2.3.1/mapbox-gl.css' rel='stylesheet' />
+<script type="text/javascript">
+  const myToken = '<%- process.env.MAPBOX_TOKEN %>';
+  const productLocation = <%- JSON.stringify(product.geometry.coordinates)%>;
+  const prod = <%- [JSON.stringify(product)]%>;
+</script>
+<script src="/js/displayMap.js"></script>
+<%- include('partials/footer.ejs') %>

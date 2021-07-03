@@ -1,0 +1,36 @@
+<%- include('partials/header.ejs') %>
+<h2 class="text-center mb-3 mt-5">Product Creation Form</h2>
+<section class="h-100 d-flex justify-content-center align-items-center">
+        <form class="needs-validation" action="/product" method="post" enctype="multipart/form-data" novalidate>
+                <div class="mb-3">
+                    <label for="product" class="form-label">Product Name:</label>
+                    <input type="text" class="form-control" name="product" id="product" required placeholder="Macbook Pro">
+                    <div class="valid-feedback">
+                        Looks good!
+                      </div>
+                </div>
+                <div class="mb-3">
+                    <label for="location" class="form-label">location:</label>
+                    <input type="text" class="form-control" name="location" id="location" required placeholder="Teynampet Chennai">
+                    <div class="valid-feedback">
+                        Looks good!
+                      </div>
+                </div>
+                <div class="mb-3">
+                    <label for="description" class="form-label">Description</label>
+                    <textarea class="form-control" name="description" id="description" rows="3" required placeholder="Barely used..."></textarea>
+                    <div class="valid-feedback">
+                    Looks good!
+                    </div>   
+                </div>
+                <div class="mb-3">
+                    <label for="formFileMultiple" class="form-label">Image(s):</label>
+                    <input class="form-control" type="file" id="formFileMultiple" name="display" 
+                    accept="image/png, image/jpeg, image/jpg"
+                    required multiple>
+                </div>
+                <input type="submit" class="btn btn-primary" >
+        </form>
+</section>
+<script src="/js/formValidation.js"></script>
+<%- include('partials/footer.ejs') %>
