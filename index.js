@@ -58,7 +58,8 @@ app.use('/login', login);
 app.use('/register', register);
 app.use('/product', product);
 app.use('/comment', comment);
-app.listen(3000, ()=>console.log('Connected to port 3000'));
+const port = process.env.PORT || 3000;
+app.listen(port, ()=>console.log('Connected to port '+port));
 app.get('/home',async(req, res)=>{
     const products = await Product.find({});
     if(req.session.returnTo){
