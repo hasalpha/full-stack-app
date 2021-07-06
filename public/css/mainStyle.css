@@ -43,3 +43,54 @@ a{
     height: 200px;
     align-content: center;
 }
+
+@media only screen and (max-width:768px) {
+    #menu{
+        flex-direction:column;
+        white-space:nowrap;
+    }
+}
+
+@media only screen and (max-width: 768px){
+    #displayContainer{
+        display:flex;
+        flex-direction:column;
+        min-height: 800px;
+    }
+
+    #map{
+        margin-top: 20px;
+    }
+}
+
+.card-img-top{
+    width: 200px;
+    height: 200px;
+    display: block;
+    margin: 0 auto;
+}
+
+#productCard{
+    width: 300px;
+}
+
+#map{
+    width:300px;
+    height: 352px;
+}
+
+#displayContainer{
+    height:90vh;
+}
+
+#noProductsHeader{
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    height: 85vh;
+}
+
+#list{
+    height: 70vh;
+}
