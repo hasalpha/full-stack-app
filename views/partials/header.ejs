@@ -30,12 +30,18 @@
       </nav>
 
     <% if(Object.keys(success).length) { %>
-        <p class="alert-success">
-            <%= success %>
-        </p>
+      <div class="alert alert-success alert-dismissible fade show text-center" role="alert">
+        <strong><%= success %></strong> 
+        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
     <% } %>
     <% if(Object.keys(error).length) { %>
-        <p class="alert-danger">
-            <%= error %>
-        </p>
+      <div class="alert alert-danger alert-dismissible fade show text-center" role="alert">
+        <strong><%= error %></strong> 
+        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
     <% } %>
